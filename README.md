@@ -44,11 +44,6 @@ MAIL_FROM_ADDRESS=info@email.adventureguidanceagency.info
 MAIL_FROM_NAME="Adventure Guidance Agency"
       </code></pre>
     </li>
-    <li>Set up the queue:
-      <pre><code>php artisan queue:table
-php artisan migrate
-php artisan queue:work</code></pre>
-    </li>
     <li>Serve the app:
       <pre><code>php artisan serve</code></pre>
       Visit <code>http://localhost:8000/bulk-email</code> in your browser.
