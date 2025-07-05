@@ -1,66 +1,70 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Laravel Bulk Email Sender</title>
+</head>
+<body>
+  <h1>📧 Laravel Bulk Email Sender</h1>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+  <p>This application allows you to send bulk emails using a web interface, powered by Laravel's queue system and SparkPost SMTP.</p>
 
-## About Laravel
+  <h2>📦 Features</h2>
+  <ul>
+    <li>Send emails to multiple addresses at once</li>
+    <li>Queue-based job processing for performance</li>
+    <li>Customizable subject and message</li>
+    <li>Configured for SparkPost SMTP</li>
+  </ul>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+  <h2>🚀 Installation Instructions</h2>
+  <ol>
+    <li>Clone the repository:
+      <pre><code>git clone https://github.com/nagunurikaveri/laravel-bulk-mail.git</code></pre>
+    </li>
+    <li>Navigate into the project:
+      <pre><code>cd laravel-bulk-mail</code></pre>
+    </li>
+    <li>Install dependencies:
+      <pre><code>composer install</code></pre>
+    </li>
+    <li>Copy the environment file and generate the application key:
+      <pre><code>cp .env.example .env
+php artisan key:generate</code></pre>
+    </li>
+    <li>Set up your SMTP credentials in the <code>.env</code> file:
+      <pre><code>
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.sparkpostmail.com
+MAIL_PORT=587
+MAIL_USERNAME=SMTP_Injection
+MAIL_PASSWORD=37ac73f58526a9ba850f43f83b9dbc108bd30091
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=info@email.adventureguidanceagency.info
+MAIL_FROM_NAME="Adventure Guidance Agency"
+      </code></pre>
+    </li>
+    <li>Set up the queue:
+      <pre><code>php artisan queue:table
+php artisan migrate
+php artisan queue:work</code></pre>
+    </li>
+    <li>Serve the app:
+      <pre><code>php artisan serve</code></pre>
+      Visit <code>http://localhost:8000/bulk-email</code> in your browser.
+    </li>
+  </ol>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  <h2>📝 Usage</h2>
+  <p>Fill in the Subject, Body, and comma-separated email addresses, then click <strong>Send Bulk Emails</strong>. The messages will be dispatched via queued jobs and processed by SparkPost SMTP.</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  <h2>🛠️ Notes</h2>
+  <ul>
+    <li>Ensure you are running <code>php artisan queue:work</code> in a separate terminal.</li>
+    <li>Test with a few emails before scaling.</li>
+    <li>You can change the sender email by editing <code>MAIL_FROM_ADDRESS</code> in <code>.env</code>.</li>
+  </ul>
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+  <p><em>Built with Laravel 10 and configured for SparkPost SMTP.</em></p>
+</body>
+</html>
